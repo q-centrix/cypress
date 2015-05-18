@@ -64,7 +64,7 @@ module Validators
         disjoint_oids = reported_oids - HL7_QRDA_OIDS - oids
         if !disjoint_oids.empty?
     add_error(message: "File appears to contain data criteria outside that required by the measures. Valuesets in file not in measures tested #{disjoint_oids}'",
-                                                   msg_type: :warning,
+                                                
                                                    file_name: options[:file_name])
         end
     end
