@@ -80,6 +80,14 @@ group :test do
   gem 'ruby-prof'
   gem 'simplecov'
   gem 'bundler-audit'
+  gem 'capybara'
+  gem 'capybara-webkit'
+  gem 'poltergeist'
+  gem 'show_me_the_cookies'
+  gem 'selenium-webdriver'
+  gem 'rubyzip'
+ # gem 'capybara-accessible'
+
 end
 
 group :production do
