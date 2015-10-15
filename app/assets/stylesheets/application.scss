@@ -8,4 +8,13 @@
 @import './assets_framework/breadcrumb';
 @import './assets_framework/alerts';
 
-@import './cypress/**/*';
+//// This is Bootstrap's SASS with our own variables from _bootstrap-variables.scss
+@import "_bootstrap-custom";
+
+//// from our own assets/stylesheets
+@import "_navbar";
+
+//// from vendor/assets/stylesheets (from Assets Framework)
+@import "breadcrumb";
+@import "assets_framework/custom-mixins";
+@import "assets_framework/alerts";
