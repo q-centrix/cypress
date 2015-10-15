@@ -7,7 +7,7 @@
     <div class = "col-sm-4">
       <%= f.text_field :name, :class => "form-control", :placeholder => 'Name', :required => true %>
     </div>
-    <div class = "required-field-label col-sm-1" >* required</div>
+    <div class = "required-field-label" >* required</div>
   </div>
   <div class = "form-group">
     <%= f.label :vendor_id, 'Vendor ID', :class => "control-label col-sm-2" %>
@@ -103,7 +103,7 @@
       <input type = "text" class = "form-control" name = "contact_type" placeholder = "Admin, Sales" />
     </div>
     <div class="col-xs-2">
-        <label class = "btn btn-default remove_label" id = "template_remove_label" >- Remove</label>
+        <label class = "btn btn-default remove_label" id = "template_remove_label" ><i class="fa fa-fw fa-minus" aria-hidden="true"></i> Remove</label>
         <input id = "template_remove_hidden_input" type = "hidden" value = "0" />
         <input class = "remove_checkbox" id = "template_remove_checkbox" type = "checkbox" value="1" />
     </div>
@@ -111,7 +111,7 @@
 
   <div class = "form-group poc-group">
     <div class="col-xs-2">
-        <button id = "add_poc_field_set_button" type = "button" class = "btn btn-default">+ Add Contact</button>
+        <button id = "add_poc_field_set_button" type = "button" class = "btn btn-default btn-block"><i class="fa fa-fw fa-plus" aria-hidden="true"></i> Add Contact</button>
     </div>
   </div>
 
