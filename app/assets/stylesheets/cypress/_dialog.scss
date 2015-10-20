@@ -1,0 +1,64 @@
+// This overwrites the default styling for the jQuery UI dialog
+// Overwrites with styles from Bootstrap's modal and our variables
+
+.ui-dialog {
+  @extend .modal-dialog;
+  @extend .modal-content;
+  border-radius: $border-radius-large;
+  font-family: $font-family-base;
+  outline: 0;
+
+  .ui-dialog-titlebar {
+    @extend .modal-header;
+    background: none;
+    border: 0;
+    border-bottom: 1px solid $modal-header-border-color;
+    border-radius: $border-radius-large;
+  }
+
+  .ui-dialog-title {
+    @extend .modal-title;
+    @extend .h3;
+    font-weight: bold;
+  }
+
+  .ui-dialog-content {
+    @extend .modal-body;
+    @include box-shadow(none);
+  }
+
+  .ui-dialog-buttonpane {
+    @extend .modal-footer;
+    @include box-shadow(none);
+
+    button {
+      font-family: $font-family-base;
+      margin: 0;
+    }
+  }
+
+  .icon_circle_remove {
+    @extend .close;
+    border: 0;
+    background: none;
+
+    // remove the icon jquery applies
+    &:before {
+      content: '';
+    }
+  }
+
+  .ui-state-default,
+  .ui-widget-content .ui-state-default,
+  .ui-widget-header .ui-state-default {
+    background: $body-bg;
+    border: 0;
+  }
+}
+
+.ui-widget-overlay {
+  @extend .modal-backdrop;
+  @include opacity($modal-backdrop-opacity);
+  background: none;
+  background-color: $modal-backdrop-bg;
+}
