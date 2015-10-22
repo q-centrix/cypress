@@ -6,15 +6,15 @@
   <section>
     <table class="table table-sm">
       <thead>
-        <tr>
-          <th class = "col-sm-1">Status</th>
-          <th class = "col-sm-3">Vendor</th>
-          <th class = "col-sm-2 number_col">Passing Products</th>
-          <th class = "col-sm-2 number_col">Failing Products</th>
-          <th class = "col-sm-2 number_col">Incomplete Products</th>
-          <th class = "col-sm-2 number_col">Total Products</th>
-          <td></td>
-        </tr>
+<tr>
+  <th class = "col-sm-1">Status</th>
+  <th class = "col-sm-3">Vendor</th>
+  <th class = "col-sm-2 number_col">Passing Products</th>
+  <th class = "col-sm-2 number_col">Failing Products</th>
+  <th class = "col-sm-2 number_col">Incomplete Products</th>
+  <th class = "col-sm-2 number_col">Total Products</th>
+  <td></td>
+</tr>
       </thead>
       <tbody>
         <% @vendors.each do |vendor| %>
@@ -37,5 +37,429 @@
       </tbody>
     </table>
   </section>
+
+  <button id="trigger_measures" class="btn btn-warning">Select measures</button>
+
+  <script>
+  $(function() {
+    $( "#tabs" ).tabs().addClass("ui-tabs-vertical ui-helper-clearfix");
+
+    $( "#tabs li" ).removeClass("ui-corner-top");
+
+    $("#pick_all").on('change', function() {
+
+      var $checkboxes = $('.measure-list input[type="checkbox"], .selected-measure-list input[type="checkbox"]');
+
+      if (this.checked) {
+$( "#tabs" ).tabs('disable');
+$('.ui-tabs .checkbox').css('color','grey');
+$checkboxes.prop('disabled', true);
+      } else {
+$( "#tabs" ).tabs('enable');
+$('.ui-tabs .checkbox').removeAttr('style');
+$checkboxes.prop('disabled', false);
+      }
+    });
+  });
+  </script>
+
+<%= render  :layout => 'dialog', :locals => { id: 'pick_measures' } do %>
+  <div class="row">
+    <div class="col-md-9 col-md-offset-3">
+      <div class="checkbox">
+        <label>
+          <input id="pick_all" type="checkbox"> JUST GIMME ALL THE MEASURES OF EVERYTYPE
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div id="tabs" class="row">
+    <div class="col-md-3 sidebar">
+      <ul>
+        <li><a href="#fragment-1">Behavioral Health Adult</a></li>
+        <li><a href="#fragment-2">Behavioral Health General</a></li>
+        <li><a href="#fragment-3">Behavioral Health Pediatric</a></li>
+        <li><a href="#fragment-4">Cancer</a></li>
+        <li><a href="#fragment-5">Core</a></li>
+        <li><a href="#fragment-6">Dental</a></li>
+        <li><a href="#fragment-7">Diabetes</a></li>
+        <li><a href="#fragment-8">Eye</a></li>
+        <li><a href="#general_adults">General Practice Adult</a></li>
+        <li><a href="#fragment-9">General Practice Pediatric</a></li>
+        <li><a href="#fragment-10">HIV</a></li>
+        <li><a href="#fragment-11">Heart</a></li>
+        <li><a href="#fragment-12">Orthopedics</a></li>
+        <li><a href="#fragment-13">Pregnancy</a></li>
+      </ul>
+    </div>
+    <div class="col-md-4 measure-list">
+      <div id="fragment-1">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> All measures in this category
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS160v3/0712 - Depression Utilization of the PHQ-9 Tool
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS159v3/0710 - Depression Remission at Twelve Months
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS169v3/0110 - Bipolar Disorder and Major Depression: Appraisal for alcohol or chemical substance use
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS128v3/0105 - Anti-depressant Medication Management
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS82v2/1401 - Maternal Depression Screening
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS161v3/0104 - Adult Major Depressive Disorder (MDD): Suicide Risk Assessment
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS137v3/0004 - Initiation and Engagement of Alcohol and Other Drug Dependence Treatment
+          </label>
+        </div>
+      </div>
+      <div id="fragment-2">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS149v3/DementiaCognitive - Dementia: Cognitive Assessment
+          </label>
+        </div>
+      </div>
+      <div id="fragment-3">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS177v3/1365 - Child and Adolescent Major Depressive Disorder (MDD): Suicide Risk Assessment
+          </label>
+        </div>
+      </div>
+      <div id="fragment-4">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS141v4/0385 - Colon Cancer: Chemotherapy for AJCC Stage III Colon Cancer Patients
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS140v3/0387 - Breast Cancer: Hormonal Therapy for Stage IC-IIIC Estrogen Receptor/Progesterone Receptor (ER/PR) Positive Breast Cancer
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS129v4/0389 - Prostate Cancer: Avoidance of Overuse of Bone Scan for Staging Low Risk Prostate Cancer Patients
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS157v3/0384 - Oncology: Medical and Radiation – Pain Intensity Quantified
+          </label>
+        </div>
+      </div>
+      <div id="fragment-5">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS155v3/0024 - Weight Assessment and Counseling for Nutrition and Physical Activity for Children and Adolescents
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS50v3/ClosingReferralLoop - Closing the Referral Loop: Receipt of Specialist Report
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS126v3/0036 - Use of Appropriate Medications for Asthma
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS166v4/0052 - Use of Imaging Studies for Low Back Pain
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS153v3/0033 - Chlamydia Screening for Women
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS156v3/0022 - Use of High-Risk Medications in the Elderly
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS90v4/FSACHF - Functional Status Assessment for Complex Chronic Conditions
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS136v4/0108 - ADHD: Follow-Up Care for Children Prescribed Attention-Deficit/Hyperactivity Disorder (ADHD) Medication
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS75v3/ChildDentalDecay - Children Who Have Dental Decay or Cavities
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS69v3/0421 - Preventive Care and Screening: Body Mass Index (BMI) Screening and Follow-Up Plan
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS117v3/0038 - Childhood Immunization Status
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS68v4/0419 - Documentation of Current Medications in the Medical Record
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS2v4/0418 - Preventive Care and Screening: Screening for Clinical Depression and Follow-Up Plan
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS138v3/0028 - Preventive Care and Screening: Tobacco Use: Screening and Cessation Intervention
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS146v3/0002 - Appropriate Testing for Children with Pharyngitis
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS165v3/0018 - Controlling High Blood Pressure
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS154v3/0069 - Appropriate Treatment for Children with Upper Respiratory Infection (URI)
+          </label>
+        </div>
+      </div>
+      <div id="fragment-6">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS74v4/PrimaryCariesPrevention - Primary Caries Prevention Intervention as Offered by Primary Care Providers, including Dentists
+          </label>
+        </div>
+      </div>
+      <div id="fragment-7">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS142v3/0089 - Diabetic Retinopathy: Communication with the Physician Managing Ongoing Diabetes Care
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS134v3/0062 - Diabetes: Urine Protein Screening
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS122v3/0059 - Diabetes: Hemoglobin A1c Poor Control
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS123v3/0056 - Diabetes: Foot Exam
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS163v3/0064 - Diabetes: Low Density Lipoprotein (LDL) Management
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS148v3/0060 - Hemoglobin A1c Test for Pediatric Patients
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS167v3/0088 - Diabetic Retinopathy: Documentation of Presence or Absence of Macular Edema and Level of Severity of Retinopathy
+          </label>
+        </div>
+              </div>
+              <div id="fragment-8">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS133v3/0565 - Cataracts: 20/40 or Better Visual Acuity within 90 Days Following Cataract Surgery
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS132v3/0564 - Cataracts: Complications within 30 Days Following Cataract Surgery Requiring Additional Surgical Procedures
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS131v3/0055 - Diabetes: Eye Exam
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS143v3/0086 - Primary Open-Angle Glaucoma (POAG): Optic Nerve Evaluation
+          </label>
+        </div>
+              </div>
+              <div id="general_adults">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> All measures in this category
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> Asthma Home Management (CMS89v2)
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> Breast Cancer Screening (CMS125v3)
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> Hypertension Improvement (CMS65v4)
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> Cholesterol - Fasting LDL Testing (CMS61v4)
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> Lung Cancer Screening (CMS112v2)
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> Diabetes Testing (CMS89v3)
+          </label>
+        </div>
+      </div>
+
+      <div id="fragment-9">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS147v4/0041 - Preventive Care and Screening: Influenza Immunization
+          </label>
+        </div>
+      </div>
+      <div id="fragment-10">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS62v3/0403 - HIV/AIDS: Medical Visit
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS77v3/HIVRNAControl - HIV/AIDS: RNA Control for Patients with HIV
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS52v3/0405 - HIV/AIDS: Pneumocystis Jiroveci Pneumonia (PCP) Prophylaxis
+          </label>
+        </div>
+      </div>
+      <div id="fragment-11">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS179v3/ADE_TTR - ADE Prevention and Monitoring: Warfarin Time in Therapeutic Range
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS164v3/0068 - Ischemic Vascular Disease (IVD): Use of Aspirin or Another Antithrombotic
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS135v3/0081 - Heart Failure (HF): Angiotensin-Converting Enzyme (ACE) Inhibitor or Angiotensin Receptor Blocker (ARB) Therapy for Left Ventricular Systolic Dysfunction (LVSD)
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS144v3/0083 - Heart Failure (HF): Beta-Blocker Therapy for Left Ventricular Systolic Dysfunction (LVSD)
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS145v3/0070 - Coronary Artery Disease (CAD): Beta-Blocker Therapy—Prior Myocardial Infarction (MI) or Left Ventricular Systolic Dysfunction (LVEF <40%)
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS182v4/0075 - Ischemic Vascular Disease (IVD): Complete Lipid Panel and LDL Control.
+          </label>
+        </div>
+      </div>
+      <div id="fragment-12">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS56v3/FSAHip - Functional Status Assessment for Hip Replacement
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS66v3/FSAKnee - Functional Status Assessment for Knee Replacement
+          </label>
+        </div>
+      </div>
+      <div id="fragment-13">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> CMS158v3/0608 - Pregnant women that had HBsAg testing
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5 selected-measure-list">
+      <h1>Selected measures</h1>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> Cholesterol - Fasting LDL Testing (CMS61v4)
+        </label>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> Lung Cancer Screening (CMS112v2)
+        </label>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> Diabetes Testing (CMS89v3)
+        </label>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+
 
 </div>

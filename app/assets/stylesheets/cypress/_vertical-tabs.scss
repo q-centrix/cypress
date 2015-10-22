@@ -1,0 +1,69 @@
+.ui-tabs {
+  display: table;
+  font-size: .85em;
+  margin-top: 1em;
+
+  .sidebar,
+  .measure-list,
+  .selected-measure-list {
+    display: table-cell;
+    overflow: auto;
+  }
+
+  .ui-tabs-panel {
+    padding: 0;
+  }
+
+  .ui-widget-header {
+    background: $body-bg;
+    border: 0;
+  }
+
+  .ui-tabs-nav {
+    padding: 0;
+
+    li {
+      clear: left;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+
+      .ui-tabs-anchor {
+        width: 100%;
+      }
+
+      &.ui-tabs-active.ui-state-active {
+        color: $nav-tabs-active-link-hover-color;
+        background: none;
+        background-color: $nav-tabs-active-link-hover-bg;
+        cursor: default;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .sidebar {
+    padding-right: 0;
+  }
+
+  .measure-list {
+    border-left: 1px $nav-tabs-active-link-hover-bg solid;
+    border-right: 1px $nav-tabs-active-link-hover-bg solid;
+  }
+
+  .measure-list,
+  .selected-measure-list {
+    .checkbox {
+      margin-top: 1em;
+      margin-bottom: 1em;
+
+      label {
+        font-weight: 300;
+      }
+    }
+
+    h1 {
+      @extend .h4;
+    }
+  }
+}

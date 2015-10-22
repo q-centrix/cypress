@@ -8,6 +8,13 @@
   font-family: $font-family-base;
   outline: 0;
 
+  .ui-state-default,
+  .ui-widget-content .ui-state-default,
+  .ui-widget-header .ui-state-default {
+    background: $body-bg;
+    border: 0;
+  }
+
   .ui-dialog-titlebar {
     @extend .modal-header;
     background: none;
@@ -48,12 +55,7 @@
     }
   }
 
-  .ui-state-default,
-  .ui-widget-content .ui-state-default,
-  .ui-widget-header .ui-state-default {
-    background: $body-bg;
-    border: 0;
-  }
+
 }
 
 .ui-widget-overlay {

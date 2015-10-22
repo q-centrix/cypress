@@ -1,15 +1,15 @@
 $(function() {
 
-  var dialogElement        = $('#selector');      // the element as defined by the id passed into the dialog partial
-  var dialogTrigger        = $('#trigger');       // the element you click to trigger the dialog
+  var dialogElement        = $('#pick_measures');      // the element as defined by the id passed into the dialog partial
+  var dialogTrigger        = $('#trigger_measures');       // the element you click to trigger the dialog
 
   var dialogOptions = {}
-  dialogOptions['title']   = "Specify a title";   // text visible on dialog titlebar
-  dialogOptions['width']   = 600;                 // width in pixels. 600 for a small dialog, 900 for a large one.
+  dialogOptions['title']   = "Select Measures To Test";   // text visible on dialog titlebar
+  dialogOptions['width']   = 900;                 // width in pixels. 600 for a small dialog, 900 for a large one.
   dialogOptions['buttons'] = [];                  // these will be the action buttons on the bottom right of the dialog.
 
   var button1 = {
-    text: "Nevermind",                          // text visible on button
+    text: "Cancel",                          // text visible on button
     "class": 'btn btn-default',                 // specify bootstrap button class (default, info, warning, danger, success)
     click: function() {
                                                 // write some code that actually does things
@@ -17,23 +17,15 @@ $(function() {
     }
   }
 
-  var button2 = {
-    text: "Try Again Later",
-    "class": 'btn btn-warning',
-    click: function() {
-      $(this).dialog('close');
-    }
-  }
-
   var button3 = {
-    text: "Save It Now",
+    text: "Continue",
     "class": 'btn btn-success',
     click: function() {
       $(this).dialog('close');
     }
   }
 
-  dialogOptions['buttons'].push(button1, button2, button3);  // add the buttons
+  dialogOptions['buttons'].push(button1, button3);  // add the buttons
 
   // The following does not need customization.
   // Initialize the dialog with options

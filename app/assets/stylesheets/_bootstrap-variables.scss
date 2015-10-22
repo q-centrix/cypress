@@ -207,7 +207,7 @@ $input-border-radius-large:      $border-radius-large !default;
 $input-border-radius-small:      $border-radius-small !default;
 
 //** Border color for inputs on focus
-$input-border-focus:             #66afe9 !default;
+$input-border-focus:             $brand-primary !default;
 
 //** Placeholder text color
 $input-color-placeholder:        #999 !default;
@@ -427,18 +427,18 @@ $navbar-inverse-toggle-border-color:        transparent !default;
 //##
 
 //=== Shared nav styles
-$nav-link-padding:                          10px 15px !default;
-$nav-link-hover-bg:                         $component-active-bg !default;
+$nav-link-padding:                          4px 6px !default;
+$nav-link-hover-bg:                         $navbar-default-link-hover-bg !default;
 
 $nav-disabled-link-color:                   $gray-light !default;
 $nav-disabled-link-hover-color:             $gray-light !default;
 
 //== Tabs
-$nav-tabs-border-color:                     #ddd !default;
+$nav-tabs-border-color:                     transparent !default;
 
 $nav-tabs-link-hover-border-color:          $gray-lighter !default;
 
-$nav-tabs-active-link-hover-bg:             $body-bg !default;
+$nav-tabs-active-link-hover-bg:             $navbar-default-link-hover-bg !default;
 $nav-tabs-active-link-hover-color:          $gray !default;
 $nav-tabs-active-link-hover-border-color:   #ddd !default;
 
