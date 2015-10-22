@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   root to: 'vendors#index'
 
   resources :vendors do
-    resources :products
+    resources :products do
+      resources :product_tests
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
