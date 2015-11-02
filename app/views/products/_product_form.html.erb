@@ -23,10 +23,61 @@
     <% end %>
   </div>
 
+  <div class="col-md-4">
+    <%= f.form_group :measure_selection, label: { text: "Measures to Test" }, help: "Cypress v3 tests products one measure at a time. Click 'Custom' to specify individual measures." do %>
+      <%= f.radio_button :measure_selection, "hospital", label: "All EH Measures", label_class: "btn btn-checkbox active", checked: true, disabled: params[:action] == "edit" %>
+      <%= f.radio_button :measure_selection, "provider", label: "All EP Measures", label_class: "btn btn-checkbox", disabled: params[:action] == "edit" %>
+      <%= f.radio_button :measure_selection, "custom", label: "Custom...", label_class: "btn btn-checkbox", disabled: params[:action] == "edit" %>
+    <% end %>
   </div>
 
+  <% if params[:action] == "new" %>
+  <div class="col-md-12 pick-measures hidden">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h2>Select Custom Measures</h2>
+      </div>
+      <div class="panel-body">
+        <div id="measure_tabs" class="measure-selection col-md-8">
+          <div class="sidebar">
+            <!-- set up a tab header for each measure group -->
+            <ul>
+              <% @measures_categories.sort.each do |category, measures| %>
+                <li><a href="#<%= category.tr(" '", "_") %>"><%= category %></a></li>
+              <% end %>
+            </ul>
+          </div>
+          <div class="measure-list">
+            <% @measures_categories.sort.each do |category, measures| %>
+              <!-- set up a checkbox for each top-level measure in the group -->
+              <div id="<%= category.tr(" '", "_")%>" class="measure_group ">
+                <% if measures.length > 1 %>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" id="<%= category.tr(" '", "_")%>_group" class="measure_group_all"/> Select all <%= measures.length %> <%= category %> measures
+                  </label>
+                </div>
+                <% end %>
+                <% measures.each do |m| %>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="product_test[measure_ids][]" id="<%= m.hqmf_id %>" value="<%= m.hqmf_id%>"
+                      class="measure-checkbox"/>
+                      <strong><%= m.cms_id %></strong> <%= m.name %>
+                    </label>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-md-4 selected-measure-list">
+          <h3>Selected measures</h3>
+        </div>
+      </div>
     </div>
   </div>
+  <% end %>
 </div>
 
 <div class="panel-footer">
