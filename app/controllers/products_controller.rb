@@ -5,8 +5,18 @@ class ProductsController < ApplicationController
   def new
     @product = Product.new
     @product.vendor = @vendor
+
+    # TODO: Get latest version of each measure
+    @measures = Measure.top_level.sort_by! { |m| m.cms_id[3, m.cms_id.index('v') - 3].to_i }
+    @measures_categories = @measures.group_by(&:category)
+
     add_breadcrumb @vendor.name, "/vendors/#{@vendor.id}"
     add_breadcrumb 'Add Product', :new_vendor_path
+
+    respond_to do |format|
+      format.html
+      format.json { render json: { measures: @measures, measures_categories: @measures_categories, product: @product } }
+    end
   end
 
   def create

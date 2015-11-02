@@ -24,6 +24,7 @@ class Product
   field :c2_test, type: Boolean
   field :c3_test, type: Boolean
   field :c4_test, type: Boolean
+  field :measure_selection, type: String
 
   # state should be 'passing', 'failing', etc.
   field :state, type: String
