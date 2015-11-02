@@ -29,6 +29,9 @@ gem 'font-awesome-rails'
 gem 'uglifier', '>= 1.3.0'
 # Bake the best breadcrumbs
 gem 'breadcrumbs_on_rails'
+# Help our forms
+gem 'bootstrap_form', github: 'bootstrap-ruby/rails-bootstrap-forms'
+gem 'nested_form'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
