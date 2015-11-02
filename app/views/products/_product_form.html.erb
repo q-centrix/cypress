@@ -1,109 +1,42 @@
-<%= form_for [@vendor, @product], html: { class: "form-horizontal" } do |f| %>
+<div class="panel panel-default">
+<div class="panel-heading"><h1><%= submit_text %><%= @product.name ? ": "+ @product.name : "" %></h1></div>
 
-  <div class = "form-group">
-    <%= f.label :name, "Product Name", :class => "control-label col-sm-2" %>
-    <div class = "col-sm-4">
-      <%= f.text_field :name, :class => "form-control", :placeholder => "Name" %>
-    </div>
-    <div class = "col-sm-2" >* required</div>
-  </div>
-
-  <div class = "form-group">
-    <%= f.label :version, "Version", :class => "control-label col-sm-2" %>
-    <div class = "col-sm-4">
-      <%= f.text_field :version, :class => "form-control", :placeholder => "Version"%>
-    </div>
+<%= bootstrap_form_for [@vendor, @product] do |f| %>
+<div class="panel-body">
+  <div class="col-md-4">
+    <%= f.text_field :name %>
+    <%= f.text_field :version %>
+    <%= f.text_area :description %>
   </div>
 
-  <div class = "form-group">
-    <%= f.label :description, "Description", :class => "control-label col-sm-2" %>
-    <div class = "col-sm-4">
-      <%= f.text_area :description, :class => "form-control", :placeholder => "Write product description here..."%>
-    </div>
+  <div class="col-md-4">
+    <%= f.form_group :ehr_type, label: { text: "EHR Type" }, help: "You cannot change this later." do %>
+      <%= f.radio_button :ehr_type, "hospital", label: "Eligible Hospital (EH)", label_class: "btn btn-checkbox active", checked: true, disabled: params[:action] == "edit" %>
+      <%= f.radio_button :ehr_type, "provider", label: "Eligible Provider (EP)", label_class: "btn btn-checkbox", disabled: params[:action] == "edit" %>
+    <% end %>
+
+    <%= f.form_group label: { text: "Certification Types" }, help: "C4 is optional." do %>
+      <%= f.check_box :c1_test, label: "C1 Test - Record and Export", label_class: "btn btn-checkbox", disabled: params[:action] == "edit" %>
+      <%= f.check_box :c2_test, label: "C2 Test - Import and Calculate", label_class: "btn btn-checkbox", disabled: params[:action] == "edit" %>
+      <%= f.check_box :c3_test, label: "C3 Test - Data Submission", label_class: "btn btn-checkbox", disabled: params[:action] == "edit" %>
+      <%= f.check_box :c4_test, label: "C4 Test - Data Filtering", label_class: "btn btn-checkbox", disabled: params[:action] == "edit" %>
+    <% end %>
   </div>
 
-  <div class = "form-group">
-    <%= f.label :ehr_type, "EHR Type", :class => "control-label col-sm-2" %>
-    <div class = "col-sm-4">
-      <div class = "btn-group btn-group-justified" role = "group">
-        <%= f.radio_button :ehr_type, "hospital", disabled: f.object.persisted?, :class => "hide" %>
-        <%= f.label :ehr_type_hospital, "Eligible Hospital", class: (f.object.persisted? ? "cannot_select btn btn-default" : "btn btn-default") %>
-        <%= f.radio_button :ehr_type, "provider", disabled: f.object.persisted?, :class => "hide" %>
-        <%= f.label :ehr_type_provider, "Eligible Provider", class: (f.object.persisted? ? "cannot_select btn btn-default" : "btn btn-default") %>
-      </div>
-    </div>
-    <div class = "col-sm-2" >* required</div>
   </div>
 
-  <div class = "row">
-    <label class = "control-label col-sm-2">Certification Types</label>
-    <div class = "col-sm-4">
-      <%= f.check_box :c1_test, disabled: f.object.persisted?, :class => "hide" %>
-      <%= f.label :c1_test, "C1 Test - Record and Export", class: (f.object.persisted? ? "cannot_select btn btn-default btn-block" : "btn btn-default btn-block") %>
-    </div>
-    <div class = "col-sm-2" >* required</div>
-  </div>
-  <div class = "row">
-    <div class = "col-sm-2"></div>
-    <div class = "col-sm-4">
-      <%= f.check_box :c2_test, disabled: f.object.persisted?, :class => "hide" %>
-      <%= f.label :c2_test, "C2 Test - Import and Calculate", class: (f.object.persisted? ? "cannot_select btn btn-default btn-block" : "btn btn-default btn-block") %>
     </div>
   </div>
-  <div class = "row">
-    <div class = "col-sm-2"></div>
-    <div class = "col-sm-4">
-      <%= f.check_box :c3_test, disabled: f.object.persisted?, :class => "hide" %>
-      <%= f.label :c3_test, "C3 Test - Data Submission", class: (f.object.persisted? ? "cannot_select btn btn-default btn-block" : "btn btn-default btn-block") %>
-    </div>
-  </div>
-  <div class = "row">
-    <div class = "col-sm-2"></div>
-    <div class = "col-sm-4">
-      <%= f.check_box :c4_test, disabled: f.object.persisted?, :class => "hide" %>
-      <%= f.label :c4_test, "C4 Test - Data Filtering", class: (f.object.persisted? ? "cannot_select btn btn-default btn-block" : "btn btn-default btn-block") %>
-    </div>
-  </div>
+</div>
 
-  <div class = "form-group">
-    <div class = "col-sm-2"></div>
-    <div class = "col-sm-4">
-      <div class = "pull-right">
-        <%= submit_tag "Cancel", :class => "btn btn-default", :type => "button", :onclick => "location.href = '/vendors/#{@vendor.id}'" %>
-        <%= button_tag submit_text, :class => "btn btn-primary" %>
-      </div>
-    </div>
+<div class="panel-footer">
+  <div class="pull-right">
+  <%= submit_tag "Cancel", :class => "btn btn-danger", :type => "button", :onclick => "location.href = '/vendors/#{@vendor.id}'" %>
+  <%= f.submit submit_text, class: "btn btn-success" %>
   </div>
+  <div class="clearfix"></div>
+</div>
 
 <% end %>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</div>
