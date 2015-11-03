@@ -1,14 +1,15 @@
 GIT
-  remote: git://github.com/bootstrap-ruby/rails-bootstrap-forms.git
-  revision: c7af9f10a263a601c588dcc1d3193263fb2994b4
-  specs:
-    bootstrap_form (2.3.0)
-
-GIT
   remote: https://github.com/DatabaseCleaner/database_cleaner.git
   revision: b87f00320f8aa0f7e499d183128f05ce29cedc33
   specs:
     database_cleaner (1.5.1)
+
+GIT
+  remote: https://github.com/bootstrap-ruby/rails-bootstrap-forms.git
+  revision: c7af9f10a263a601c588dcc1d3193263fb2994b4
+  branch: master
+  specs:
+    bootstrap_form (2.3.0)
 
 GIT
   remote: https://github.com/projectcypress/health-data-standards.git

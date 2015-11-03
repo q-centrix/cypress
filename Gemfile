@@ -30,7 +30,7 @@ gem 'uglifier', '>= 1.3.0'
 # Bake the best breadcrumbs
 gem 'breadcrumbs_on_rails'
 # Help our forms
-gem 'bootstrap_form', github: 'bootstrap-ruby/rails-bootstrap-forms'
+gem 'bootstrap_form', git: 'https://github.com/bootstrap-ruby/rails-bootstrap-forms.git', branch: 'master'
 gem 'nested_form'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
