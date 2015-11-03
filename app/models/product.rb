@@ -53,6 +53,7 @@ class Product
     Rails.cache.fetch("#{cache_key}/product_tests_incomplete") do
       product_tests.select { |product_test| product_test.status == 'incomplete' }
     end
+  end
 
   def at_least_one_test_type?
     errors.add(:tests, 'Product must include at least one certification test.') unless [c1_test, c2_test, c3_test, c4_test].any? { |is_true| is_true }
