@@ -10,6 +10,11 @@ class MeasureTest < ProductTest
   # only creates c1, c2, and c3 tasks with no attributes as of now ~ JaeBird
   # as of now, should only create one task per task type
   def create_tasks
+    # if the user only chooses c3, then imply the user wanted c1, c2, and c3
+    if product.c3_test && !product.c1_test && !product.c2_test
+      product.c1_test = true
+      product.c2_test = true
+    end
     C1Task.new(product_test: self).save! if product.c1_test
     C2Task.new(product_test: self).save! if product.c2_test
     C3Task.new(product_test: self).save! if product.c3_test

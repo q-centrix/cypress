@@ -3,7 +3,6 @@
 <% c1 = @product_test.product.c1_test %>
 <% c2 = @product_test.product.c2_test %>
 <% c3 = @product_test.product.c3_test %>
-<% c1 = c2 = true if c3 && !c1 && !c2 %>
 
 <% tab_label_1 = 'C1 and C3' if c1 && c3 %>
 <% tab_label_1 = 'C1' if c1 && !c3 %>
