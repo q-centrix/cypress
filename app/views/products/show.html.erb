@@ -20,10 +20,46 @@
 
   </div>
 
-  <% unless @product.product_tests.empty? %>
-    <p><%= "Product has #{@product.product_tests.count} tests:" %></p>
+  <% if @product.c1_test || @product.c4_test %>
+    <div class = 'row'>
+      <% if @product.c1_test %>
+        <div class = 'col-sm-6'>
+          <div class = 'panel panel-default'>
+            <div class = 'panel-heading'>
+              <% # maybe put a green check next to it if its passing ~ JaeBird %>
+              <h4>C1 Visual Inspection</h4>
+            </div>
+            <div class = 'panel-body'>
+              <p>Start by generating the C1 visual inspection records. Then perform the inspection. If measures are added or removed from this product, the results from you C1 visual inspection may become invalid.</p>
+              <div class = 'col-sm-12 text-center'>
+                <% if @product.checklist_test %>
+                  <%= button_to 'Perform Inspection', "/products/#{@product.id}/checklist_tests/#{@product.checklist_test.id}", class: 'btn btn-block btn-primary', method: :get %>
+                <% else %>
+                  <%= button_to 'Generate Test', "/products/#{@product.id}/checklist_tests", class: 'btn btn-block btn-primary', method: :post %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <% if @product.c4_test %>
+        <div class = 'col-sm-6'>
+          <div class = 'panel panel-default'>
+            <div class = 'panel-heading'>
+              <h4>C4 Filtering</h4>
+            </div>
+            <div class = 'panel-body'>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if @product.measure_tests %>
+    <p><%= "Product has #{@product.measure_tests.count} tests:" %></p>
     <ul>
-      <% @product.product_tests.each do |test| %>
+      <% @product.measure_tests.each do |test| %>
         <li>
           <%= link_to test.name, [@product, test] %>
           <%= "(#{test.status})" if test.status %>
