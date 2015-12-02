@@ -114,10 +114,14 @@ class ProductsController < ApplicationController
   end
 
   def create_product_tests(product, measure_ids)
+
     measure_ids.each do |measure_id|
       measure = Measure.top_level.where(hqmf_id: measure_id).first
       pt = MeasureTest.new(name: measure.name, product: product, measure_ids: [measure_id], cms_id: measure.cms_id, bundle_id: measure.bundle_id)
       pt.save!
+      ft = FilteringTest.new(name: "C4: #{measure.name}", product: product, measure_ids: [measure_id], cms_id: measure.cms_id, bundle_id: measure.bundle_id)
+      ft.tasks << DemographicsTask.new()
+      ft.save!
     end
   end
 end

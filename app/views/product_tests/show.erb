@@ -1,1 +1,9 @@
 <%= "product_test name: #{@product_test.name}" %>
+<% @product_test.tasks.each_with_index do |task, index| %>
+  <div >
+    Task <%= index + 1 %>
+
+    <%= render partial: "demographics_task", locals: {task: task} %>
+
+  </div>
+<% end %>
