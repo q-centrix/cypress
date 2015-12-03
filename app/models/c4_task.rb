@@ -1,4 +1,5 @@
 class C4Task < Task
+
   def after_create
     # generate expected results here.  Will need to gen quailty report
     # for each of the measures in the product_test but constrainted to the
