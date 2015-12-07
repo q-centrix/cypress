@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:edit, :update, :destroy, :show]
-  before_action :set_vendor, only: [:new, :create]
+  before_action :set_product, except: [:index, :new, :create]
+  before_action :set_vendor, only: [:new, :create, :edit]
 
   def index
     @vendor.products
@@ -70,10 +70,15 @@ class ProductsController < ApplicationController
     end
   end
 
+  def download_total_test_deck
+    file = Cypress::CreateDownloadZip.create_total_test_zip(@product)
+    send_data file.read, type: 'application/zip', disposition: 'attachment', filename: "Full_Test_Deck_#{params[:id]}.zip"
+  end
+
   private
 
   def set_product
-    @product = set_vendor.products.find(params[:id])
+    @product = Product.find(params[:id])
   end
 
   def set_vendor
