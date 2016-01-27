@@ -1,10 +1,6 @@
-require_relative '../../lib/validators/smoking_gun_validator'
-require_relative '../../lib/validators/qrda_cat1_validator'
-
 class QRDAProductTest < ProductTest
   include Mongoid::Attributes::Dynamic
   include ::Validators
-
 
   belongs_to :calculated_product_test, foreign_key: "calculated_test_id", index: true
 
