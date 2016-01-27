@@ -2,7 +2,7 @@ require 'quality-measure-engine'
 module Validators
   class QrdaFileValidator
 
-    require 'cypress/qrda_file_constants'
+    require_relative '../cypress/qrda_file_constants'
 
     def get_document(doc)
       doc = (doc.kind_of? String )? Nokogiri::XML(doc) : doc

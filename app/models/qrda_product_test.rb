@@ -1,5 +1,5 @@
-require 'validators/smoking_gun_validator'
-require 'validators/qrda_cat1_validator'
+require_relative '../../lib/validators/smoking_gun_validator'
+require_relative '../../lib/validators/qrda_cat1_validator'
 
 class QRDAProductTest < ProductTest
   include Mongoid::Attributes::Dynamic
