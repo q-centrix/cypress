@@ -60,7 +60,6 @@ class CalculatedProductTest < ProductTest
   end
 
   def execute(qrda_file)
-
     data = qrda_file.open.read
     doc = Nokogiri::XML(data)
     te = self.test_executions.build(expected_results:self.expected_results,

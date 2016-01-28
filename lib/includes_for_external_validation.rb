@@ -31,6 +31,10 @@ end
   './validators/smoking_gun_validator.rb',
   './cypress/qrda_file_constants.rb',
   './validators/qrda_file_validator.rb',
+  './validators/qrda_cat1_validator.rb',
+  './validators/qrda_cat3_validator.rb',
+  './validators/expected_results_validator.rb',
+  './validators/measure_period_validator.rb',
 
   # product tests
   '../app/models/product.rb',
@@ -49,3 +53,9 @@ end
   '../app/models/artifact.rb',
   '../app/models/execution_error.rb'
 ].each { |relative_path| load_external_validation_dependency(relative_path) }
+
+class QRDAProductTest < Cypress::QRDAProductTest; end
+class InpatientProductTest < Cypress::InpatientProductTest; end
+module Validators
+  include Cypress::Validators
+end
