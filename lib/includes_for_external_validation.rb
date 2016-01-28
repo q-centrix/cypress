@@ -1,11 +1,16 @@
 # gems
 require 'aasm'
+require 'devise'
+require 'devise/orm/mongoid'
 require 'carrierwave'
 require 'carrierwave/mongoid'
 require 'health-data-standards'
 require 'quality-measure-engine'
 
-module Cypress; end
+module Cypress
+  Bundle = HealthDataStandards::CQM::Bundle
+end
+
 module Validators; end
 
 def load_into_cypress_namespace(absolute_path)
@@ -30,6 +35,10 @@ end
   # product tests
   '../app/models/product.rb',
   '../app/models/product_test.rb',
+  '../app/models/vendor.rb',
+  '../app/models/user.rb',
+  '../app/models/note.rb',
+  '../app/models/patient_population.rb',
   '../app/models/calculated_product_test.rb',
   '../app/models/inpatient_product_test.rb',
   '../app/models/qrda_product_test.rb',
