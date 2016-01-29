@@ -51,11 +51,18 @@ end
   '../app/models/test_execution.rb',
   '../app/uploaders/document_uploader.rb',
   '../app/models/artifact.rb',
-  '../app/models/execution_error.rb'
+  '../app/models/execution_error.rb',
+
+  # monkey patches :(
+  './ext/measure.rb'
 ].each { |relative_path| load_external_validation_dependency(relative_path) }
 
-class QRDAProductTest < Cypress::QRDAProductTest; end
-class InpatientProductTest < Cypress::InpatientProductTest; end
+Measure = Cypress::Measure
+QRDAProductTest = Cypress::QRDAProductTest
+InpatientProductTest = Cypress::InpatientProductTest
 module Validators
   include Cypress::Validators
 end
+
+# load HQMF from health-data-standards' lib folder
+Gem.find_files("hqmf-parser.rb").each{|f| require f}
