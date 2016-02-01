@@ -60,7 +60,7 @@ class CalculatedProductTest < ProductTest
   end
 
   def execute(qrda_file)
-    data = qrda_file.open.read
+    data = read_qrda_file_contents(qrda_file)
     doc = Nokogiri::XML(data)
     te = self.test_executions.build(expected_results:self.expected_results,
      execution_date: Time.now.to_i)
@@ -128,4 +128,7 @@ class CalculatedProductTest < ProductTest
     res_clone.save
   end
 
+  def read_qrda_file_contents(qrda_file)
+    qrda_file.respond_to?(:open) ? qrda_file.open.read : qrda_file.read
+  end
 end
