@@ -20,7 +20,7 @@ class CalculatedProductTest < ProductTest
   after_create :gen_pop
 
   def gen_pop
-    self.generate_population
+    self.generate_population if should_generate_population?
   end
 
   def calculate_expected_results
@@ -130,5 +130,13 @@ class CalculatedProductTest < ProductTest
 
   def read_qrda_file_contents(qrda_file)
     qrda_file.respond_to?(:open) ? qrda_file.open.read : qrda_file.read
+  end
+
+  def should_generate_population?
+    return !population_already_generated?
+  end
+
+  def population_already_generated?
+    state == :ready
   end
 end
