@@ -4,9 +4,11 @@ class QRDAProductTest < ProductTest
   belongs_to :calculated_product_test, foreign_key: "calculated_test_id", index: true
 
   def validators
-    @validators ||= [::Validators::QrdaCat1Validator.new(self.bundle, self.measures, self.parent_measures),
-    ::Validators::SmokingGunValidator.new(self.measures, self.records, self.id),
-    ::Validators::MeasurePeriodValidator.new()]
+    @validators ||= [
+      ::Validators::QrdaCat1Validator.new(bundle, measures, parent_measures),
+      ::Validators::SmokingGunValidator.new(measures, records, id),
+      ::Validators::MeasurePeriodValidator.new
+    ]
   end
 
   def execute(file)

@@ -54,9 +54,11 @@ class CalculatedProductTest < ProductTest
   end
 
   def validators(doc)
-    @validators ||= [::Validators::QrdaCat3Validator.new(expected_results),
-      ::Validators::MeasurePeriodValidator.new(),
-      ::Validators::ExpectedResultsValidator.new(expected_results)]
+    @validators ||= [
+      ::Validators::QrdaCat3Validator.new(expected_results),
+      ::Validators::MeasurePeriodValidator.new,
+      ::Validators::ExpectedResultsValidator.new(expected_results)
+    ]
   end
 
   def execute(qrda_file)
@@ -133,7 +135,7 @@ class CalculatedProductTest < ProductTest
   end
 
   def should_generate_population?
-    return !population_already_generated?
+    !population_already_generated?
   end
 
   def population_already_generated?

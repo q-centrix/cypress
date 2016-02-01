@@ -5,6 +5,7 @@ require 'devise/orm/mongoid'
 require 'carrierwave'
 require 'carrierwave/mongoid'
 require 'health-data-standards'
+require 'health-data-standards/hqmf-parser'
 require 'quality-measure-engine'
 
 module Cypress
@@ -65,7 +66,7 @@ module Validators
 end
 
 # load HQMF from health-data-standards' lib folder
-Gem.find_files("hqmf-parser.rb").each{|f| require f}
+Gem.find_files('hqmf-parser.rb').each { |f| require f }
 
 APP_CONFIG = {
   'file_upload_root' => File.absolute_path('./tmp'),
