@@ -4,9 +4,6 @@ require 'devise'
 require 'devise/orm/mongoid'
 require 'carrierwave'
 require 'carrierwave/mongoid'
-require 'health-data-standards'
-require 'health-data-standards/hqmf-parser'
-require 'quality-measure-engine'
 
 module Cypress
   Bundle = HealthDataStandards::CQM::Bundle
@@ -58,7 +55,6 @@ end
   './ext/measure.rb'
 ].each { |relative_path| load_external_validation_dependency(relative_path) }
 
-Measure = Cypress::Measure
 QRDAProductTest = Cypress::QRDAProductTest
 InpatientProductTest = Cypress::InpatientProductTest
 module Validators
