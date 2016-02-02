@@ -54,11 +54,9 @@ class CalculatedProductTest < ProductTest
   end
 
   def validators(doc)
-    @validators ||= [
-      ::Validators::QrdaCat3Validator.new(expected_results),
-      ::Validators::MeasurePeriodValidator.new,
-      ::Validators::ExpectedResultsValidator.new(expected_results)
-    ]
+    @validators ||= [::Validators::QrdaCat3Validator.new(expected_results),
+      ::Validators::MeasurePeriodValidator.new(),
+      ::Validators::ExpectedResultsValidator.new(expected_results)]
   end
 
   def execute(qrda_file)
