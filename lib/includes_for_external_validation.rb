@@ -5,22 +5,33 @@ require 'devise/orm/mongoid'
 require 'carrierwave'
 require 'carrierwave/mongoid'
 
-module Cypress
-  Bundle = HealthDataStandards::CQM::Bundle
-end
-
 module Validators; end
 
-def load_into_cypress_namespace(absolute_path)
-  Cypress.module_eval File.read(absolute_path)
-end
+module Cypress
+  Bundle = HealthDataStandards::CQM::Bundle
 
-def absolute_cypress_path(relative_path)
-  File.expand_path(relative_path, File.dirname(__FILE__))
-end
+  def factory_path
+    absolute_cypress_path('../test/factories')
+  end
 
-def load_external_validation_dependency(relative_path)
-  load_into_cypress_namespace(absolute_cypress_path(relative_path))
+  def load_into_cypress_namespace(absolute_path)
+    Cypress.module_eval File.read(absolute_path)
+  end
+
+  def absolute_cypress_path(relative_path)
+    File.expand_path(relative_path, File.dirname(__FILE__))
+  end
+
+  def load_external_validation_dependency(relative_path)
+    load_into_cypress_namespace(absolute_cypress_path(relative_path))
+  end
+
+  %i(
+    factory_path
+    load_into_cypress_namespace
+    absolute_cypress_path
+    load_external_validation_dependency
+  ).each { |method| module_function method }
 end
 
 [
@@ -53,7 +64,9 @@ end
 
   # monkey patches :(
   './ext/measure.rb'
-].each { |relative_path| load_external_validation_dependency(relative_path) }
+].each do |relative_path|
+  Cypress.load_external_validation_dependency(relative_path)
+end
 
 QRDAProductTest = Cypress::QRDAProductTest
 InpatientProductTest = Cypress::InpatientProductTest
