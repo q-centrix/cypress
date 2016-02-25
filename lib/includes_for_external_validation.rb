@@ -70,6 +70,7 @@ end
 
 QRDAProductTest = Cypress::QRDAProductTest
 InpatientProductTest = Cypress::InpatientProductTest
+CalculatedProductTest = Cypress::CalculatedProductTest
 module Validators
   include Cypress::Validators
 end
