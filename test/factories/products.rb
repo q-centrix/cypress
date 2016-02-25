@@ -1,4 +1,12 @@
 FactoryGirl.define do
+  factory :external_validation_product, class: Cypress::Product do
+    user_ids  { [FactoryGirl.create(:external_validation_user).id] }
+    vendor_id { FactoryGirl.create(:external_validation_vendor).id }
+
+    name 'Dat App'
+    version ''
+    description ''
+  end
 
   factory :product_1 do
     name "Vendor 1 Product 1"

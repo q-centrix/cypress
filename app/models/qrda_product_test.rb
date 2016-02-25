@@ -1,17 +1,14 @@
-require 'validators/smoking_gun_validator'
-require 'validators/qrda_cat1_validator'
-
 class QRDAProductTest < ProductTest
   include Mongoid::Attributes::Dynamic
-  include ::Validators
-
 
   belongs_to :calculated_product_test, foreign_key: "calculated_test_id", index: true
 
   def validators
-    @validators ||= [QrdaCat1Validator.new(self.bundle, self.measures, self.parent_measures),
-    SmokingGunValidator.new(self.measures, self.records, self.id),
-    MeasurePeriodValidator.new()]
+    @validators ||= [
+      ::Validators::QrdaCat1Validator.new(bundle, measures, parent_measures),
+      ::Validators::SmokingGunValidator.new(measures, records, id),
+      ::Validators::MeasurePeriodValidator.new
+    ]
   end
 
   def execute(file)
